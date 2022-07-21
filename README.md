@@ -1,6 +1,8 @@
 # nix-config
 Nixos Configuration
 
+Primary configuration using `nixpkgs` and `flakes` if you would prefer to use `homemanager` see [Lucas-Kohorst/nix-config/homemanger](https://github.com/Lucas-Kohorst/nix-config/tree/home-manager)
+
 ### Steps 
 
 1. Generate and build initial config
