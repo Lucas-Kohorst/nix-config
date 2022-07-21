@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./nixpkgs/home.nix
     ];
 
   boot.loader = {
@@ -69,10 +70,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    dracula-theme # gtk theme
+    # programming
+    rustc
+    cargo
 
     # tools
-    ffmpeg
     wget
     btop
     htop
