@@ -23,8 +23,6 @@ in
     imports = [
       ./zsh.nix
       ./git.nix
-
-      ./neovim/neovim.nix
     ];
     home.packages = with pkgs; [
       # Shell
