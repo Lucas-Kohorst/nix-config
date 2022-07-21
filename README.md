@@ -3,7 +3,7 @@ Nixos Configuration
 
 ### Steps 
 
-1. Generate Initial Config
+1. Generate and build initial config
 
 ```
 # generates a base 
@@ -12,11 +12,20 @@ Nixos Configuration
 # see https://nixos.wiki/wiki/Nixos-generate-config
 
 nixos-generate-config
+
+# build inital config
+nixos-rebuild switch
 ```
 
 2. Clone this Repository
 ```
-git clone https://github.com/Lucas-Kohorst/nix-config.git /etc/nixos/
+# install git
+nix-env -i git
+
+# clone this repository
+git clone https://github.com/Lucas-Kohorst/nix-config.git /etc/nixos/nix-config
+mv /etc/nixos/nix-config/* /etc/nixos/
+rm -rf /etc/nixos/nix-config
 ```
 
 3. Rebuild your system
