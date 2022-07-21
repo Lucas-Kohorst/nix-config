@@ -31,5 +31,5 @@ rm -rf /etc/nixos/nix-config
 3. Rebuild your system
 
 ```
-nixos-rebuild switch
+nixos-rebuild switch --flake '.#'
 ```
