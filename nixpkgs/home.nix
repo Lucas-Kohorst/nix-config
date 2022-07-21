@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    <home-manager/nixos>
-  ];
-  
   home = {
     username = "lucas";
     homeDirectory = "/home/lucas";

@@ -20,7 +20,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.lucas = import ./home.nix;
+              home-manager.users.lucas = import ./nixpkgs/home.nix;
             }
           ];
         };
