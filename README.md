@@ -1,5 +1,5 @@
 # nix-config
-Nixos Configuration
+Nixos Configuration with `homemanager`
 
 ### Steps 
 
