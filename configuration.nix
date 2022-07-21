@@ -9,8 +9,8 @@
   boot.loader = {
     grub = {
       enable = true;
-      device = "nodev";
-      efiSupport = true;
+      device = "nodev";  # or "nodev" for efi only
+      # efiSupport = true;
       configurationLimit = 20;
     };
     efi = {
