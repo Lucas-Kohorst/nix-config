@@ -1,55 +1,101 @@
-{ config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 
 {
-  imports = [
-    ./home.nix
-  ];
+  imports =
+    [
+      ./hardware-configuration.nix
+    ];
 
-  # networking and naming
-  networking.hostName = "kuutamod-01";
+  boot.loader = {
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+      configurationLimit = 20;
+    };
+    efi = {
+      canTouchEfiVariables = true;
+      # efiSysMountPoint = "/boot/efi";
+    };
+  };
 
-  # System wide packages.
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    vim_configurable
-  ];
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
 
-  # User configs.
+  time.timeZone = "America/New_York";
+
+  # Select internationalization properties.
+  i18n.defaultLocale = "en_US.utf8";
+  i18n.extraLocaleSettings.LC_TIME = "en_DK.UTF-8"; # ISO-8601 time
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  #   useXkbConfig = true; # use xkbOptions in tty.
+  # };
+
+  # Don't forget to set a password with ‘passwd’.
   users.users.lucas = {
     isNormalUser = true;
-    home = "/home/lucas";
-    description = "Lucas Kohorst";
-    extraGroups = [ "wheel" "networkmanager" ];
+    shell = pkgs.bash;
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  # would be in hardware.nix
-  fileSystems."/" =
-    { device = "dev/nvme0n1p2";
-      fsType = "ext4";
-    };
-
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    #efiSupport = true;
-    device = "/dev/nvme0n1";
-  };
-
-  # nix configuration
-  system.stateVersion = "22.05";
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
+      keep-outputs = true
     '';
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    # autoUpgrade = {
+    #   enable = true;
+    #   flake = "~/nixos";
+    #   flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
+    # };
   };
 
-  # .vimrc configuration
+  fonts = {
+    enableDefaultFonts = true;
+    fonts = with pkgs; [
+      nerdfonts # (nerdfonts.override { fonts = [ "Iosevka" "Meslo" ]; })
+    ];
+  };
 
-  # .bashrc configuration
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    dracula-theme # gtk theme
+
+    # tools
+    ffmpeg
+    wget
+    btop
+    htop
+    ripgrep
+    exa
+    bat
+    fd
+  ];
+
+  environment.sessionVariables = {
+    XDG_CONFIG_HOME = "$HOME/.config";
+    NIXOS_OZONE_WL = "1";
+  };
+
+  security.sudo = {
+    package = pkgs.sudo.override {
+      withInsults = true;
+    };
+    extraConfig = "Defaults insults";
+  };
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  system.stateVersion = "22.05";
 }
