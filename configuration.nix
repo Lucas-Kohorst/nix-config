@@ -80,6 +80,8 @@
     exa
     bat
     fd
+    git
+    vim
   ];
 
   environment.sessionVariables = {
