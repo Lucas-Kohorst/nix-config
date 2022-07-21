@@ -4,7 +4,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./nixpkgs/home.nix
     ];
 
   boot.loader = {
