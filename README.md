@@ -1,4 +1,7 @@
 # nix-config
+
+**Not Working At the Moment**
+
 Nixos Configuration
 
 Primary configuration using `nixpkgs` and `flakes` if you would prefer to use `homemanager` see [Lucas-Kohorst/nix-config/homemanger](https://github.com/Lucas-Kohorst/nix-config/tree/home-manager)
