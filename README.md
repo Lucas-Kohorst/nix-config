@@ -1,6 +1,11 @@
 # nix-config
 Nixos Configuration with `homemanager`
 
+### Branchs
+- MacOS configuration [macos](https://github.com/Lucas-Kohorst/nix-config)
+- NixOS using homemanager [homemanager](https://github.com/Lucas-Kohorst/nix-config/tree/home-manager)
+- NixOS using nixpkgs [nixpkgs](https://github.com/Lucas-Kohorst/nix-config/tree/nixpkgs)
+
 ### Steps 
 
 1. Generate and build initial config
