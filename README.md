@@ -32,6 +32,9 @@ cd
 git clone --branch macos https://github.com/Lucas-Kohorst/nix-config.git
 cd ~/.config
 ln -s ~/nix-config nixpkgs
+
+# if not new machine might need to `rm` or `ln` `~/.gitconfig` to ~/.config/git/`
+rm -rf ~/.gitconfig
 ```
 
 3. Rebuild
