@@ -1,8 +1,11 @@
-export NIXPKGS_ALLOW_UNFREE=1 && home-manager switch
-
 # nix-config
 
 Nix Configuration for Macos with `home-manager`
+
+### Branchs
+- MacOS configuration [macos](https://github.com/Lucas-Kohorst/nix-config)
+- NixOS using homemanager [homemanager](https://github.com/Lucas-Kohorst/nix-config/tree/home-manager)
+- NixOS using nixpkgs [nixpkgs](https://github.com/Lucas-Kohorst/nix-config/tree/nixpkgs)
 
 ### Steps 
 
@@ -33,5 +36,5 @@ ln -s ~/nix-config nixpkgs
 
 3. Rebuild
 ```
-home-manager switch
+export NIXPKGS_ALLOW_UNFREE=1 && home-manager switch
 ```
