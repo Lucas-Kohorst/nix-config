@@ -1,0 +1,100 @@
+syntax on
+syntax enable
+filetype plugin indent on
+set noerrorbells
+set tabstop=2
+set softtabstop=2
+set expandtab
+set shiftwidth=2
+set smartindent
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set number
+set noshowmode
+set cursorline
+set wildmenu
+set showmatch
+set incsearch
+set laststatus=2
+set scrolloff=10
+
+" Plugins
+call plug#begin('.vim/plugged')
+
+Plug 'rust-lang/rust.vim'
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'frazrepo/vim-rainbow'
+Plug 'itchyny/lightline.vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'pangloss/vim-javascript'
+Plug 'valloric/youcompleteme'
+Plug 'jremmen/vim-ripgrep'
+Plug 'mileszs/ack.vim'
+Plug 'vim-utils/vim-man'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'tomlion/vim-solidity'
+
+call plug#end()
+
+" NERDCommenter
+let g:NERDCreateDefaultMappings = 1
+let g:NERDSpaceDelims = 1
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDDefaultAlign = 'left'
+
+" Rainbow Brackets
+let g:rainbow_active = 1
+
+" Material Colorscheme
+if (has('termguicolors'))
+  set termguicolors
+endif
+set t_Co=256
+if !has('nvim')
+  let &t_ZH="\e[3m"
+  let &t_ZR="\e[23m"
+endif
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'palenight'
+let g:lightline = { 'colorscheme': 'material_vim' }
+
+" Not Really sure, need to check
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+" Ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Auto pairs
+let g:AutoPairsFlyMode = 1
+
+" Key mappings
+let mapleader = " "
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
+
+vnoremap <leader>c :w !pbcopy<CR>
+
+inoremap jk <esc>
+
+set splitbelow

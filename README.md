@@ -1,40 +1,37 @@
+export NIXPKGS_ALLOW_UNFREE=1 && home-manager switch
+
 # nix-config
 
-**Not Working At the Moment**
-
-Nixos Configuration
-
-Primary configuration using `nixpkgs` and `flakes` if you would prefer to use `homemanager` see [Lucas-Kohorst/nix-config/homemanger](https://github.com/Lucas-Kohorst/nix-config/tree/home-manager)
+Nix Configuration for Macos with `home-manager`
 
 ### Steps 
 
-1. Generate and build initial config
+1. [Install](https://gist.github.com/ethnt/cfed3027f3676b110bf1df444ef1f30a)
 
 ```
-# generates a base 
-# - configuration.nix
-# - hardware-configuration.nix
-# see https://nixos.wiki/wiki/Nixos-generate-config
+# install on zsh with multiuser
+sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon
 
-nixos-generate-config
+# install nix-darwin
+nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+./result/bin/darwin-installer
 
-# build inital config
-nixos-rebuild switch
+# install home-manager
+nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
 ```
 
-2. Clone this Repository
+2. Using Git 
 ```
-# install git
-nix-env -i git
-
-# clone this repository
-git clone https://github.com/Lucas-Kohorst/nix-config.git /etc/nixos/nix-config
-mv /etc/nixos/nix-config/* /etc/nixos/
-rm -rf /etc/nixos/nix-config
+# move packages and configurations into a git repository in your home directory
+cd
+git clone --branch macos https://github.com/Lucas-Kohorst/nix-config.git
+cd ~/.config
+ln -s ~/nix-config nixpkgs
 ```
 
-3. Rebuild your system
-
+3. Rebuild
 ```
-nixos-rebuild switch --flake '.#'
+home-manager switch
 ```
