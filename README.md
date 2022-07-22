@@ -4,7 +4,10 @@
 
 Nixos Configuration
 
-Primary configuration using `nixpkgs` and `flakes` if you would prefer to use `homemanager` see [Lucas-Kohorst/nix-config/home-manger](https://github.com/Lucas-Kohorst/nix-config/tree/home-manager)
+### Branchs
+- MacOS configuration [macos](https://github.com/Lucas-Kohorst/nix-config)
+- NixOS using homemanager [homemanager](https://github.com/Lucas-Kohorst/nix-config/tree/home-manager)
+- NixOS using nixpkgs [nixpkgs](https://github.com/Lucas-Kohorst/nix-config/tree/nixpkgs)
 
 ### Steps 
 
